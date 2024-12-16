@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:weather_app/app/modules/home/controllers/global_controller.dart';
+import 'package:weather_app/app/widgets/current_weather_widget.dart';
 import 'package:weather_app/app/widgets/header_widget.dart';
 
 // import '../controllers/home_controller.dart';
@@ -23,6 +24,11 @@ class HomeView extends GetView<GlobalController> {
                     height: 20,
                   ),
                   const HeaderWidget(),
+                  // for current temp ('current')
+                  CurrentWeatherWidget(
+                    weatherDataCurrent:
+                        controller.getWeatherData().getCurrentWeather(),
+                  ),
                 ],
               )),
       ),
