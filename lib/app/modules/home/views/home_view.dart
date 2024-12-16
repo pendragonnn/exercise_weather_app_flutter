@@ -13,24 +13,28 @@ class HomeView extends GetView<GlobalController> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Obx(() => (controller.checkLoading().isTrue)
-            ? const Center(
-                child: CircularProgressIndicator(),
-              )
-            : ListView(
-                scrollDirection: Axis.vertical,
-                children: [
-                  const SizedBox(
-                    height: 20,
+        body: Obx(
+          () => (controller.checkLoading().isTrue)
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+              : Center(
+                  child: ListView(
+                    scrollDirection: Axis.vertical,
+                    children: [
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const HeaderWidget(),
+                      // for current temp ('current')
+                      CurrentWeatherWidget(
+                        weatherDataCurrent:
+                            controller.getWeatherData().getCurrentWeather(),
+                      ),
+                    ],
                   ),
-                  const HeaderWidget(),
-                  // for current temp ('current')
-                  CurrentWeatherWidget(
-                    weatherDataCurrent:
-                        controller.getWeatherData().getCurrentWeather(),
-                  ),
-                ],
-              )),
+                ),
+        ),
       ),
     );
   }
