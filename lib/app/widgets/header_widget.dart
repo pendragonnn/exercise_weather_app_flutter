@@ -13,6 +13,7 @@ class HeaderWidget extends StatefulWidget {
 
 class _HeaderWidgetState extends State<HeaderWidget> {
   String city = "";
+  String country = "";
   String date = DateFormat("yMMMMd").format(DateTime.now());
   final GlobalController globalController =
       Get.put(GlobalController(), permanent: true);
@@ -28,35 +29,48 @@ class _HeaderWidgetState extends State<HeaderWidget> {
     Placemark place = placemark[0];
     setState(() {
       city = place.locality!;
+      country = place.country!;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(
-          margin: const EdgeInsets.only(left: 20, right: 20),
-          alignment: Alignment.topLeft,
-          child: Text(
-            city,
-            style: TextStyle(
-              fontSize: 35,
-              height: 2,
+        Column(
+          children: [
+            Container(
+              margin: const EdgeInsets.only(left: 20, right: 20),
+              alignment: Alignment.topLeft,
+              child: Row(
+                children: [
+                  // Icon(Icons.location_on),
+                  Text(
+                    "$city, $country",
+                    style: TextStyle(
+                      fontSize: 18,
+                      height: 2,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ),
-        Container(
-          margin: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
-          alignment: Alignment.topLeft,
-          child: Text(
-            date,
-            style: TextStyle(
-              fontSize: 14,
-              color: Colors.grey[700],
-              height: 1.5,
+            Container(
+              margin: const EdgeInsets.only(left: 20, right: 20),
+              alignment: Alignment.topLeft,
+              child: Text(
+                date,
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.grey[700],
+                  height: 1.5,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       ],
     );

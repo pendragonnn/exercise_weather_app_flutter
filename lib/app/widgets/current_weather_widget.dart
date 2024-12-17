@@ -24,119 +24,195 @@ class CurrentWeatherWidget extends StatelessWidget {
   }
 
   Widget TemperatureAreaWidget() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Image.asset(
-          "assets/weather/${weatherDataCurrent.weather?[0].icon}.png",
-          height: 80,
-          width: 80,
+    return Container(
+      width: 350,
+      height: 400,
+      padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(
+          Radius.circular(25),
         ),
-        Container(
-          height: 50,
-          width: 1,
-          color: CustomColors.dividerLine,
-        ),
-        RichText(
-          text: TextSpan(
+        color: CustomColors.cardColor,
+      ),
+      child: Column(
+        children: [
+          Image.asset(
+            "assets/weather/${weatherDataCurrent.weather?[0].icon}.png",
+            height: 200,
+            width: 200,
+            fit: BoxFit.contain,
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextSpan(
-                text: "${weatherDataCurrent.main?.temp.toStringAsFixed(1)}°",
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 60,
-                  color: CustomColors.textColorBlack,
-                ),
-              ),
-              TextSpan(
-                text: weatherDataCurrent.weather?[0].main,
-                style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 14,
-                  color: Colors.grey,
-                ),
+              Column(
+                children: [
+                  Text(
+                    "${weatherDataCurrent.main?.temp.round()}°",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 48,
+                    ),
+                  ),
+                  Text(
+                    "${weatherDataCurrent.weather?[0].main}",
+                    style: TextStyle(
+                      color: CustomColors.textColorBlack,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 32,
+                    ),
+                  ),
+                  Text(
+                    "Feels like ${weatherDataCurrent.main?.feelsLike.round()}°",
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 18,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
-        )
-      ],
+        ],
+      ),
     );
   }
 
   Widget CurrentWeatherMoreDetailsWidget() {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Container(
-              height: 60,
-              width: 60,
-              padding: EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: CustomColors.cardColor,
-                borderRadius: BorderRadius.circular(15),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                padding: EdgeInsets.all(10),
+                width: 110,
+                height: 110,
+                decoration: BoxDecoration(
+                  color: CustomColors.cardColor,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20),
+                  ),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Wind Speed",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                        color: CustomColors.textColorBlack,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Image.asset(
+                      "assets/icons/windspeed.png",
+                      height: 30,
+                      width: 30,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "${weatherDataCurrent.wind?.speed}km/h",
+                      style: TextStyle(fontSize: 12),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
               ),
-              child: Image.asset("assets/icons/windspeed.png"),
-            ),
-            Container(
-              height: 60,
-              width: 60,
-              padding: EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: CustomColors.cardColor,
-                borderRadius: BorderRadius.circular(15),
+              Container(
+                padding: EdgeInsets.all(10),
+                width: 110,
+                height: 110,
+                decoration: BoxDecoration(
+                  color: CustomColors.cardColor,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20),
+                  ),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Cloudiness",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                        color: CustomColors.textColorBlack,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Image.asset(
+                      "assets/icons/clouds.png",
+                      height: 25,
+                      width: 30,
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Text(
+                      "${weatherDataCurrent.clouds?.all}%",
+                      style: TextStyle(fontSize: 12),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
               ),
-              child: Image.asset("assets/icons/clouds.png"),
-            ),
-            Container(
-              height: 60,
-              width: 60,
-              padding: EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: CustomColors.cardColor,
-                borderRadius: BorderRadius.circular(15),
+              Container(
+                padding: EdgeInsets.all(10),
+                width: 110,
+                height: 110,
+                decoration: BoxDecoration(
+                  color: CustomColors.cardColor,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20),
+                  ),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Humidity",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                        color: CustomColors.textColorBlack,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Image.asset(
+                      "assets/icons/humidity.png",
+                      height: 30,
+                      width: 30,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "${weatherDataCurrent.main?.humidity}%",
+                      style: TextStyle(fontSize: 12),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
               ),
-              child: Image.asset("assets/icons/humidity.png"),
-            ),
-          ],
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            SizedBox(
-              height: 20,
-              width: 60,
-              child: Text(
-                "${weatherDataCurrent.wind?.speed}km/h",
-                style: TextStyle(fontSize: 12),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            SizedBox(
-              height: 20,
-              width: 60,
-              child: Text(
-                "${weatherDataCurrent.clouds?.all}%",
-                style: TextStyle(fontSize: 12),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            SizedBox(
-              height: 20,
-              width: 60,
-              child: Text(
-                "${weatherDataCurrent.main?.humidity}%",
-                style: TextStyle(fontSize: 12),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ],
-        )
-      ],
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
