@@ -28,7 +28,7 @@ class CurrentWeatherWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         Image.asset(
-          "assets/weather/${weatherDataCurrent.weather[0].icon}.png",
+          "assets/weather/${weatherDataCurrent.weather?[0].icon}.png",
           height: 80,
           width: 80,
         ),
@@ -41,7 +41,7 @@ class CurrentWeatherWidget extends StatelessWidget {
           text: TextSpan(
             children: [
               TextSpan(
-                text: "${weatherDataCurrent.main.temp.toStringAsFixed(1)}°",
+                text: "${weatherDataCurrent.main?.temp.toStringAsFixed(1)}°",
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 60,
@@ -49,7 +49,7 @@ class CurrentWeatherWidget extends StatelessWidget {
                 ),
               ),
               TextSpan(
-                text: weatherDataCurrent.weather[0].main,
+                text: weatherDataCurrent.weather?[0].main,
                 style: TextStyle(
                   fontWeight: FontWeight.w400,
                   fontSize: 14,
@@ -111,7 +111,7 @@ class CurrentWeatherWidget extends StatelessWidget {
               height: 20,
               width: 60,
               child: Text(
-                "${weatherDataCurrent.wind.speed}km/h",
+                "${weatherDataCurrent.wind?.speed}km/h",
                 style: TextStyle(fontSize: 12),
                 textAlign: TextAlign.center,
               ),
@@ -120,7 +120,7 @@ class CurrentWeatherWidget extends StatelessWidget {
               height: 20,
               width: 60,
               child: Text(
-                "${weatherDataCurrent.clouds.all}%",
+                "${weatherDataCurrent.clouds?.all}%",
                 style: TextStyle(fontSize: 12),
                 textAlign: TextAlign.center,
               ),
@@ -129,7 +129,7 @@ class CurrentWeatherWidget extends StatelessWidget {
               height: 20,
               width: 60,
               child: Text(
-                "${weatherDataCurrent.main.humidity}%",
+                "${weatherDataCurrent.main?.humidity}%",
                 style: TextStyle(fontSize: 12),
                 textAlign: TextAlign.center,
               ),

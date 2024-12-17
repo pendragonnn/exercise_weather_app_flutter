@@ -66,46 +66,50 @@ import 'package:weather_app/app/data/models/weather/sys.dart';
 import 'package:weather_app/app/data/models/weather/weather.dart';
 import 'package:weather_app/app/data/models/weather/wind.dart';
 
-WeatherDataCurrent weatherDataCurrentFromJson(String str) => WeatherDataCurrent.fromJson(json.decode(str));
+WeatherDataCurrent weatherDataCurrentFromJson(String str) =>
+    WeatherDataCurrent.fromJson(json.decode(str));
 
-String weatherDataCurrentToJson(WeatherDataCurrent data) => json.encode(data.toJson());
+String weatherDataCurrentToJson(WeatherDataCurrent data) =>
+    json.encode(data.toJson());
 
 class WeatherDataCurrent {
-    Coord coord;
-    List<Weather> weather;
-    String base;
-    Main main;
-    int visibility;
-    Wind wind;
-    Rain? rain;
-    Clouds clouds;
-    int dt;
-    Sys sys;
-    int timezone;
-    int id;
-    String name;
-    int cod;
+  Coord? coord;
+  List<Weather>? weather;
+  String? base;
+  Main? main;
+  int? visibility;
+  Wind? wind;
+  Rain? rain;
+  Clouds? clouds;
+  int? dt;
+  Sys? sys;
+  int? timezone;
+  int? id;
+  String? name;
+  int? cod;
 
-    WeatherDataCurrent({
-        required this.coord,
-        required this.weather,
-        required this.base,
-        required this.main,
-        required this.visibility,
-        required this.wind,
-        this.rain,
-        required this.clouds,
-        required this.dt,
-        required this.sys,
-        required this.timezone,
-        required this.id,
-        required this.name,
-        required this.cod,
-    });
+  WeatherDataCurrent({
+    this.coord,
+    this.weather,
+    this.base,
+    this.main,
+    this.visibility,
+    this.wind,
+    this.rain,
+    this.clouds,
+    this.dt,
+    this.sys,
+    this.timezone,
+    this.id,
+    this.name,
+    this.cod,
+  });
 
-    factory WeatherDataCurrent.fromJson(Map<String, dynamic> json) => WeatherDataCurrent(
+  factory WeatherDataCurrent.fromJson(Map<String, dynamic> json) =>
+      WeatherDataCurrent(
         coord: Coord.fromJson(json["coord"]),
-        weather: List<Weather>.from(json["weather"].map((x) => Weather.fromJson(x))),
+        weather:
+            List<Weather>.from(json["weather"].map((x) => Weather.fromJson(x))),
         base: json["base"],
         main: Main.fromJson(json["main"]),
         visibility: json["visibility"],
@@ -118,22 +122,22 @@ class WeatherDataCurrent {
         id: json["id"],
         name: json["name"],
         cod: json["cod"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
-        "coord": coord.toJson(),
-        "weather": List<dynamic>.from(weather.map((x) => x.toJson())),
+  Map<String, dynamic> toJson() => {
+        "coord": coord?.toJson(),
+        "weather": List<dynamic>.from(weather!.map((x) => x.toJson())),
         "base": base,
-        "main": main.toJson(),
+        "main": main?.toJson(),
         "visibility": visibility,
-        "wind": wind.toJson(),
+        "wind": wind?.toJson(),
         if (rain != null) "rain": rain?.toJson(),
-        "clouds": clouds.toJson(),
+        "clouds": clouds?.toJson(),
         "dt": dt,
-        "sys": sys.toJson(),
+        "sys": sys?.toJson(),
         "timezone": timezone,
         "id": id,
         "name": name,
         "cod": cod,
-    };
+      };
 }
